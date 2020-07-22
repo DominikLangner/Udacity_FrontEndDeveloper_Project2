@@ -13,8 +13,8 @@
  *
  */
 
-// Define Global Variables
-var sections;
+// Define Global letiables
+let sections;
 
 /**
  * End Global Variables
@@ -37,11 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
 //Select all Sections & extraxt Name (=data-nav) & anker:
 function createNav() {
   sections.forEach((element) => {
-    var name = element.getAttribute("data-nav");
-    var anker = element.id;
+    let name = element.getAttribute("data-nav");
+    let anker = element.id;
 
     // create <li>
-    var navElement = document.createElement("li");
+    let navElement = document.createElement("li");
     navElement.innerText = name;
 
     //add class name (to style it) and id:
@@ -63,8 +63,8 @@ function createNav() {
 //https://stackoverflow.com/questions/123999/how-can-i-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
 
 function isInViewport(el) {
-  var rect = el.getBoundingClientRect();
-  var navMenHeight = document
+  let rect = el.getBoundingClientRect();
+  let navMenHeight = document
     .querySelector(".page__header")
     .getBoundingClientRect().height;
   return (
@@ -79,7 +79,7 @@ function isInViewport(el) {
 // if yes it calls the function "set_active_section" with the section's id as parameter.
 
 document.addEventListener("scroll", function () {
-  for (var el of sections) {
+  for (let el of sections) {
     if (isInViewport(el)) {
       set_active_section(el.id);
       break;
@@ -93,7 +93,7 @@ the active-id (=the section in viewport) */
 
 function set_active_section(active_id) {
   //set section in view to active:
-  for (var el of sections) {
+  for (let el of sections) {
     if (el.id == active_id) {
       el.classList.add("your-active-class");
       //remove active-class from sections not in view:
@@ -102,8 +102,8 @@ function set_active_section(active_id) {
     }
   }
   //set navigation menu <li> elements'class
-  var nav_elements = document.querySelectorAll(".menu__link");
-  for (var el of nav_elements) {
+  let nav_elements = document.querySelectorAll(".menu__link");
+  for (let el of nav_elements) {
     if (el.getAttribute("target-id") == active_id) {
       el.classList.add("active");
     } else el.classList.remove("active");
@@ -113,7 +113,7 @@ function set_active_section(active_id) {
 // Scroll to anchor ID using scrollTo event
 
 function scrollIntoView(event) {
-  var x = event.target.getAttribute("target-id");
+  let x = event.target.getAttribute("target-id");
   console.log(x);
   document.getElementById(x).scrollIntoView({
     behavior: "smooth",
